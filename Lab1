@@ -1,0 +1,46 @@
+import math
+
+def inputX() -> float:
+    while True:
+        print("Введите значение X:")
+        try:
+            return float(input())
+        except ValueError as exc:
+            print("Введено не число, попробуйте ещё раз")
+
+def inputEps() -> float:
+    while True:
+        print("Введите значение Eps:")
+        try:
+            return float(input())
+        except ValueError as exc:
+            print("Введено не число, попробуйте ещё раз")
+
+def function(x: float, eps: float):
+    sum = 1
+    rang = 3
+    y = x
+    while abs(sum) >= eps:
+        numerator = x ** rang
+        denominator = math.factorial(rang)
+        sum = float(numerator / denominator)
+        if((rang - 1) / 2) % 2 == 0:
+            y += sum
+        else:
+            y -= sum
+        rang += 2
+    return y
+
+
+
+def print_result(a):
+    print(f"Результат = {a}")
+
+def main():
+    x = inputX()
+    eps = inputEps()
+    z = function(x, eps)
+    print_result(z)
+
+if __name__ == "__main__":
+    main()
